@@ -6,12 +6,14 @@ CREATE TABLE Users (
     phone_no CHAR(8),
     created_at TIMESTAMP,
     is_admin BOOLEAN,
+    friend_count NUMERIC default 0,
     UNIQUE(username)
 )
 
 CREATE TABLE HasFriends (
     userid SERIAL PRIMARY KEY,
-    friend_id SERIAL, 
+    friend_id SERIAL,
+    is_close_friend BOOLEAN default FALSE, 
     FOREIGN KEY (userid) REFERENCES Users(userid),
     FOREIGN KEY (friend_id) REFERENCES Users(userid)
 )
