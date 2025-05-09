@@ -21,6 +21,7 @@ CREATE TABLE Posts (
     posturl TEXT,
     uploader SERIAL NOT NULL,
     word_content TEXT,
+    like_count NUMERIC default 0,
     FOREIGN KEY (uploader) REFERENCES Users(userid)
 )
 
@@ -38,6 +39,7 @@ CREATE TABLE Comments (
     word_content TEXT,
     image_name TEXT,
     image_data BYTEA,
+    like_count NUMERIC default 0,
     FOREIGN KEY (userid) REFERENCES Users(userid)
 )
 
