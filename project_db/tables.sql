@@ -5,6 +5,7 @@ CREATE TABLE Users (
     email TEXT,
     phone_no CHAR(8),
     created_at TIMESTAMP,
+    is_admin BOOLEAN,
     UNIQUE(username)
 )
 
@@ -56,16 +57,21 @@ CREATE TABLE LikedBy (
     userid SERIAL,
     FOREIGN KEY (post_id) REFERENCES Posts(post_id),
     FOREIGN KEY (comment_id) REFERENCES Comments(comment_id),
-    FOREIGN KEY (userid) REFERENCES Users(userid),
+    FOREIGN KEY (userid) REFERENCES Users(userid)
 )
 
 CREATE TABLE Media (
     media_id BIGSERIAL PRIMARY KEY,
+    image_name TEXT,
+    image_data BYTEA
+)
+
+CREATE TABLE HasMedia (
     post_id BIGSERIAL,
     comment_id BIGSERIAL,
-    image_name TEXT,
-    image_data BYTEA,
+    media_id BIGSERIAL,
     FOREIGN KEY (post_id) REFERENCES Posts(post_id),
     FOREIGN KEY (comment_id) REFERENCES Comments(comment_id),
+    FOREIGN KEY (media_id) REFERENCES Media(media_id)
 )
 
